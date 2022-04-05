@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -a | find . -type f -empty -o -type d -empty | cut -d '/' -f2
+ls -laR | find -type f -empty -o -type d -empty | cut -d '/' -f2
