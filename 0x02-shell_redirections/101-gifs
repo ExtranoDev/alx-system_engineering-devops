@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -laR | find -name "*.gif" -type f | rev | cut -d "/" -f 1| rev | tr -d .gif | sort -f
+ls -laR | find -name "*.gif" -type f | rev | cut -d "/" -f 1| rev | tr -d .gif | LC_COLLATE=en_US.UTF-8 sort -f
