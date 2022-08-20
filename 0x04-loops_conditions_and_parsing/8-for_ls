@@ -2,5 +2,5 @@
 # Script displays content of directory in a list format
 
 for i in *; do
-	echo "$i";
+	echo "$i" | cut -d '-' -f 2;
 done
