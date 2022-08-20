@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# prints number from 1-100
+
+num=1
+while ((num <= 100)); do
+	if ((num % 3 == 0)) && ((num % 5 == 0))
+	then
+		echo "FizzBuzz";
+	elif ((num % 5 == 0))
+	then
+		echo "Buzz";
+	elif ((num % 3 == 0))
+	then
+		echo "Fizz";
+	else
+		echo $num
+	fi
+	((num++))
+done
