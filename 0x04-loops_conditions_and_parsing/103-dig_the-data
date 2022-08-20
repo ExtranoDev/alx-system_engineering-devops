@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Prints IP HTTP_CODE from apache file
+
+awk '{print $1 " " $9}' apache-access.log | sort | uniq -c | sort -nr
