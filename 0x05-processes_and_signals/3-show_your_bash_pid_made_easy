@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script prints PID allong with name
+
+pgrep bash -l
