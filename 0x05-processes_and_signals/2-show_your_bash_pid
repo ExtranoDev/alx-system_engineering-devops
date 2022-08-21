@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# script prints all proccesses with bash word
+
+ps auxf | grep bash
