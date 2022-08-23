@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Bash script prints a PID
+
+killer () {
+	rm /var/run/myscript.pid
+	echo "$1"
+	exit 0
+}
+
+killer1 () {
+	echo "Y U no love me?!"
+	exit 0
+}
+
+trap 'killer "I hate the kill command"' SIGTERM
+trap "killer ''" SIGQUIT
+trap "killer1" SIGINT
+
+echo $$ >> /var/run/myscript.pid
+
+while :
+do
+	echo "To infinity and beyond";
+	sleep 2
+done
