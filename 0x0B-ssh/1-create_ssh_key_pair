@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Generates new key with properties
+
+ssh-keygen -f school -b 4096 -N betty
