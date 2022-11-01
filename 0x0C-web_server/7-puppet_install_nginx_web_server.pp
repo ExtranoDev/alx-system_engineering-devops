@@ -1,6 +1,6 @@
 # nginx configuration
 
-exec {'exec':
+exec {'update':
   command  => 'sudo apt-get -y update',
   provider => 'shell'
 }
@@ -17,14 +17,14 @@ file {'index.html':
 
 $rdr_str = "\\\trewrite ^/redirect_me https://github.com/ExtranoDev permanent;"
 
-exec {'redirect':
+exec {'rdr_str':
   user     => 'root',
   command  => "sed -i '51i ${rdr_str}' /etc/nginx/sites-available/default",
   provider => 'shell'
 }
 
 exec {'nginx_restart':
-  user     => 'root',
+  user     => root,
   command  => 'service nginx start',
   provider => 'shell'
 }
