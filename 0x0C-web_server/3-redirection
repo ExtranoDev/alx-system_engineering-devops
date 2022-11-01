@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Bash script that configures a new Ubuntu machine to
+# Install nginx on web server
+# Nginx should listen on port 80
+# redirect url to my page of choice
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo chown -R "$USER:$USER" /var/www/
+redirect_str="\\\trewrite ^/redirect_me https://github.com/ExtranoDev permanent;"
+sudo sed -e "51i ${redirect_str}" -i /etc/nginx/sites-available/default
+sudo service nginx restart
