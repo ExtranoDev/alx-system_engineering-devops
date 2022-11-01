@@ -9,4 +9,5 @@ sudo apt-get -y install nginx
 sudo chown -R "$USER:$USER" /var/www/
 redirect_str="\\\trewrite ^/redirect_me https://github.com/ExtranoDev permanent;"
 sudo sed -e "51i ${redirect_str}" -i /etc/nginx/sites-available/default
+echo "Hello world!" | sudo tee /var/www/html/index.html
 sudo service nginx restart
