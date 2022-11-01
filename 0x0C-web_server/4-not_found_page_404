@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Bash script that configures a new Ubuntu machine to
+# Install nginx on web server
+# Nginx should listen on port 80
+# redirect url to my page of choice
+# custom error 404 page
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo chown -R "$USER:$USER" /var/www/
+redirect_str="\\\trewrite ^/redirect_me https://github.com/ExtranoDev permanent;"
+sudo sed -e "51i ${redirect_str}" -i /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/custom_404.html
+error_str="\\\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}"
+sudo sed -i "55i ${error_str}" -i /etc/nginx/sites-available/default
+sudo service nginx restart
