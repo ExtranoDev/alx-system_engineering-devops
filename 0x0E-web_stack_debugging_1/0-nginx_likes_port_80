@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# script to make sure that nginx runs on port 80
+
+cd /etc/nginx/sites-available/default default;
+rm default;
+ln -s /etc/nginx/sites-available/default default;
+service nginx restart
