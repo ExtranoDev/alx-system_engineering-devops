@@ -3,5 +3,5 @@
 
 cd /etc/nginx/sites-available/default default;
 rm default;
-ln -sf /etc/nginx/sites-available/default default;
+ln -sf /etc/nginx/sites-enabled/default default;
 sudo service nginx restart
