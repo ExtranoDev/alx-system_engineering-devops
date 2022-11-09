@@ -4,7 +4,7 @@
 # You cannot use apt-get remove
 
 sudo service nginx stop
-sed -i 's/80/8080' /etc/nginx/sites-enabled/default
-sed -i 's/#user.+\;/user nginx;/' /etc/nginx/nginx.conf
-chmod nginx:nginx /etc/nginx/ -R
+sudo sed -i 's/80/8080' /etic/nginx/sites-enabled/default
+sudo sed -i 's/#user.+\;/user nginx;/' /etc/nginx/nginx.conf
+sudo chmod nginx:nginx /etc/nginx/ -R
 sudo service nginx restart
