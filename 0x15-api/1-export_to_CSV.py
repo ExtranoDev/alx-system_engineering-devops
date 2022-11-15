@@ -11,7 +11,7 @@ if (len(argv) == 2) and int(argv[1]):
     response = requests.get(
             'https://jsonplaceholder.typicode.com/users/{}'
             .format(userId))
-    name = response.json()['name']
+    name = response.json()['username']
 
     response = requests.get(
             'https://jsonplaceholder.typicode.com/todos?userId={}'
@@ -22,7 +22,7 @@ if (len(argv) == 2) and int(argv[1]):
     filename = userId + ".csv"
     with open(filename, mode='w') as todo_file:
         todo_writer = csv.writer(todo_file, delimiter=',',
-                                 quotechar='"')
+                                 quotechar='"', quoting=csv.QUOTE_ALL)
         for todo in todos:
             todo_writer.writerow([userId, name,
                                  todo['completed'], todo['title']])
