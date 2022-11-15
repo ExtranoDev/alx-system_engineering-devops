@@ -22,7 +22,7 @@ if (len(argv) == 2) and int(argv[1]):
     filename = userId + ".csv"
     with open(filename, mode='w') as todo_file:
         todo_writer = csv.writer(todo_file, delimiter=',',
-                                 quotechar='"', quoting=csv.QUOTE_ALL)
+                                 quotechar='"')
         for todo in todos:
             todo_writer.writerow([userId, name,
                                  todo['completed'], todo['title']])
