@@ -22,14 +22,13 @@ def recurse(subreddit, hot_list=[], count=0):
         }
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
-            try:
-                child = response.json()['data']['children']
-                if child:
-                    temp = child.pop(0)
-                    hot_list.append(temp['data']['title'])
-                    subreddit = child
-                    return recurse(subreddit, hot_list)
-            except:
+            child = response.json()['data']['children']
+            if child:
+                temp = child.pop(0)
+                hot_list.append(temp['data']['title'])
+                subreddit = child
+                return recurse(subreddit, hot_list)
+            else:
                 return hot_list
         else:
             return None
