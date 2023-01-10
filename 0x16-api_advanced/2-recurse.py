@@ -18,8 +18,8 @@ def recurse(subreddit, hot_list=[], after=''):
     reddit = 'https://www.reddit.com'
     header = {'User-agent': 'a_oluwaferanmi'}
     response = requests.get('{}/r/{}/hot.json?after={}&limit=200'
-                      .format(reddit, subreddit, after),
-                      headers=header, allow_redirects=False)
+                            .format(reddit, subreddit, after),
+                            headers=header, allow_redirects=False)
     if response.status_code != 200:
         return None
     posts = response.json().get('data').get('children')
