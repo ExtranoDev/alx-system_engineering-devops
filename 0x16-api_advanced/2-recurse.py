@@ -16,7 +16,10 @@ def recurse(subreddit, hot_list=[], after=''):
     """
     temp_list = []
     reddit = 'https://www.reddit.com'
-    header = {'User-agent': 'a_oluwaferanmi'}
+    headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) \
+                    Gecko/20100101 Firefox/91.0'
+        }
     response = requests.get('{}/r/{}/hot.json?after={}&limit=200'
                             .format(reddit, subreddit, after),
                             headers=header, allow_redirects=False)
