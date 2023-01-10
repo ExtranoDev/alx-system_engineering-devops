@@ -6,7 +6,7 @@
 import requests
 
 
-def recurse(subreddit, hot_list=[], count=0):
+def recurse(subreddit, hot_list=[], after=''):
     """
     Returns a list of titles for a subreddit
     Args:
@@ -14,28 +14,20 @@ def recurse(subreddit, hot_list=[], count=0):
         hot_list(list): titles in subreddit
         count(int): index count of title
     """
-    if hot_list == []:
-        url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; rv:91.0) \
-                    Gecko/20100101 Firefox/91.0'
-        }
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            child = response.json()['data']['children']
-            if child:
-                temp = child.pop(0)
-                hot_list.append(temp['data']['title'])
-                subreddit = child
-                return recurse(subreddit, hot_list)
-            else:
-                return hot_list
-        else:
-            return None
-    else:
-        if subreddit == []:
-            return hot_list
-        else:
-            temp = subreddit.pop(0)
-            hot_list.append(temp['data']['title'])
-            return recurse(subreddit, hot_list)
+    temp_list = []
+    reddit = 'https://www.reddit.com'
+    header = {'User-agent': 'a_oluwaferanmi'}
+    response = requests.get('{}/r/{}/hot.json?after={}&limit=200'
+                      .format(reddit, subreddit, after),
+                      headers=header, allow_redirects=False)
+    if response.status_code != 200:
+        return None
+    posts = response.json().get('data').get('children')
+    _next = response.json().get('data').get('after')
+    for post in posts:
+        hot_list.append(post.get('data').get('title'))
+
+    if _next is not None:
+        temp_list.append(hot_list)
+        recurse(subreddit, hot_list, _next)
+    return hot_list
