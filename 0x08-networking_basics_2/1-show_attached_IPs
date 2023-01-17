@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Bash script displays all IPV4 IPs
 
-ifconfig | grep "inet " | cut -b 14- | cut -d " " -f 1
+ifconfig | grep "inet " | cut -b 14-22 | cat -e

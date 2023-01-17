@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-# script prints all proccesses
-
-ps aux
